@@ -1,5 +1,5 @@
 var bip39 = require("bip39");
-var arkjs = require("arkjs");
+var arkjs = require("bpljs");
 
 process.on("message", function(message){
 
