@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-var bpljs = require("bpljs");
 var crypto = require("crypto");
 var figlet = require("figlet");
 var colors = require("colors");
@@ -18,29 +17,17 @@ var child_process = require('child_process');
 var blessed = require('blessed');
 var contrib = require('blessed-contrib');
 
+var config = require('./config.json');
+var bpljs = require("bpljs");
+bpljs = new bpljs.BplClass(config);
+
 var server;
 var network;
 var ticker = {};
 var currencies = ["USD","AUD", "BRL", "CAD", "CHF", "CNY", "EUR", "GBP", "HKD", "IDR", "INR", "JPY", "KRW", "MXN", "RUB"]
 
 
-var networks = {
-  mainnet: {
-    nethash: "b1123a193767577e1256ca6a2bf0bb5d21ac0b8c60a13bf1d98611aee708002d",
-    peers: [
-        "165.227.224.117:9032",
-        "165.227.239.66:9032",
-        "138.68.183.82:9032",
-        "178.62.23.57:9032",
-        "178.62.50.166:9032",
-        "165.227.224.124:9032",
-        "138.68.183.46:9032",
-        "138.68.183.85:9032",
-        "165.227.239.102:9032",
-        "165.227.224.102:9032"
-    ]
-  }
-};
+var networks = config.configuredNetworks;
 
 function getNetworkFromNethash(nethash){
   for(var n in networks){
@@ -514,7 +501,7 @@ vorpal
           type: 'confirm',
           name: 'continue',
           default: false,
-          message: 'Sending '+bplAmountString+'BPL '+(currency?'('+currency+args.amount+') ':'')+'to '+args.recipient+' now',
+          message: 'Sending '+bplAmountString+config.network.client.tokenShortName+' '+(currency?'('+currency+args.amount+') ':'')+'to '+args.recipient+' now',
         }, function(result){
           if (result.continue) {
             return seriesCb(null, transaction);
@@ -600,7 +587,8 @@ vorpal
       self.log("Please connect to node or network before, in order to retrieve necessery information about address prefixing");
       return callback();
     }
-    bpljs.crypto.setNetworkVersion(network.config.version);
+
+    bpljs.crypto.setNetworkVersion(network.config.pubKeyHash);
     var passphrase = require("bip39").generateMnemonic();
     self.log("Seed    - private:",passphrase);
     self.log("WIF     - private:",bpljs.crypto.getKeys(passphrase).toWIF());
@@ -617,7 +605,7 @@ vorpal
       return callback();
     }
 
-    bpljs.crypto.setNetworkVersion(network.config.version);
+    bpljs.crypto.setNetworkVersion(network.config.pubKeyHash);
     var count=0;
     var numCPUs = require('os').cpus().length;
     var cps=[];
