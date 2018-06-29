@@ -28,52 +28,61 @@ var networks = {
   testnet: {
     nethash: "f9b98b78d2012ba8fd75538e3569bbc071ce27f0f93414218bc34bc72bdeb3db",
     peers: [
-      "13.124.137.65:9028",
-      "52.66.184.223:9028",
-      "34.211.111.67:9028",
-      "13.59.176.127:9028",
-      "54.175.122.162:9028",
-      "13.126.40.180:9028",
-      "54.93.85.178:9028",
-      "54.246.214.229:9028",
-      "35.182.28.68:9028",
-      "54.153.35.65:9028",
-      "54.252.170.222:9028",
-      "13.124.137.65:9028",
-      "52.78.18.248:9028",
-      "54.206.6.159:9028",
-      "54.183.178.42:9028",
-      "54.241.135.25:9028",
-      "52.60.226.39:9028",
-      "52.60.223.205:9028",
-      "176.34.156.16:9028",
-      "54.154.120.195:9028",
-      "54.93.33.249:9028"
+      "s01.tc.blockpool.io:9028",
+      "s02.tc.blockpool.io:9028",
+      "s03.tc.blockpool.io:9028",
+      "s04.tc.blockpool.io:9028",
+      "s05.tc.blockpool.io:9028",
+      "s06.tc.blockpool.io:9028",
+      "s07.tc.blockpool.io:9028",
+      "s08.tc.blockpool.io:9028",
+      "s09.tc.blockpool.io:9028",
+      "s10.tc.blockpool.io:9028"
     ]
   },
   mainnet: {
     nethash: "7bfb2815effb43592ccdd4fd0f657c082a7b318eed12f6396cc174d8578293c3",
     peers: [
-      "13.56.163.57:9030",
-      "54.183.132.15:9030",
-      "54.183.69.30:9030",
-      "54.183.152.67:9030",
-      "54.183.22.145:9030",
-      "54.183.209.94:9030",
-      "54.153.89.97:9030",
-      "54.153.120.24:9030",
-      "54.67.117.224:9030",
-      "54.241.156.232:9030",
-      "54.193.61.26:9030",
-      "54.67.92.59:9030",
-      "54.67.7.8:9030",
-      "54.193.96.185:9030",
-      "54.193.74.250:9030",
-      "54.67.93.228:9030",
-      "54.183.21.26:9030",
-      "54.153.44.24:9030",
-      "54.241.140.106:9030",
-      "54.153.117.209:9030"
+      "s01.mc.blockpool.io:9030",
+      "s02.mc.blockpool.io:9030",
+      "s03.mc.blockpool.io:9030",
+      "s04.mc.blockpool.io:9030",
+      "s05.mc.blockpool.io:9030",
+      "s06.mc.blockpool.io:9030",
+      "s07.mc.blockpool.io:9030",
+      "s08.mc.blockpool.io:9030",
+      "s09.mc.blockpool.io:9030",
+      "s10.mc.blockpool.io:9030",
+      "s11.mc.blockpool.io:9030",
+      "s12.mc.blockpool.io:9030",
+      "s13.mc.blockpool.io:9030",
+      "s14.mc.blockpool.io:9030",
+      "s15.mc.blockpool.io:9030",
+      "s16.mc.blockpool.io:9030",
+      "s17.mc.blockpool.io:9030",
+      "s18.mc.blockpool.io:9030",
+      "s19.mc.blockpool.io:9030",
+      "s20.mc.blockpool.io:9030",
+      "s21.mc.blockpool.io:9030",
+      "s22.mc.blockpool.io:9030",
+      "s23.mc.blockpool.io:9030",
+      "s24.mc.blockpool.io:9030",
+      "s25.mc.blockpool.io:9030",
+      "s26.mc.blockpool.io:9030",
+      "s27.mc.blockpool.io:9030",
+      "s28.mc.blockpool.io:9030",
+      "s29.mc.blockpool.io:9030",
+      "s30.mc.blockpool.io:9030",
+      "s31.mc.blockpool.io:9030",
+      "s32.mc.blockpool.io:9030",
+      "s33.mc.blockpool.io:9030",
+      "s34.mc.blockpool.io:9030",
+      "s35.mc.blockpool.io:9030",
+      "s36.mc.blockpool.io:9030",
+      "s37.mc.blockpool.io:9030",
+      "s38.mc.blockpool.io:9030",
+      "s39.mc.blockpool.io:9030",
+      "s40.mc.blockpool.io:9030"
     ]
   }
 };
@@ -149,7 +158,7 @@ function getFromNode(url, cb){
 }
 
 function getBPLTicker(currency){
-  request({url: "https://api.coinmarketcap.com/v1/ticker/ark/?convert="+currency}, function(err, response, body){
+  request({url: "https://api.coinmarketcap.com/v1/ticker/blockpool/?convert="+currency}, function(err, response, body){
     bplticker[currency]=JSON.parse(body)[0];
   });
 }
