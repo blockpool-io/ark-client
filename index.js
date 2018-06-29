@@ -672,6 +672,7 @@ vorpal
       var cp=child_process.fork(__dirname+"/vanity.js");
       cps.push(cp);
       cp.on('message', function(message){
+        console.log(message);
         if(message.passphrase){
           spinner.stop();
           var passphrase = message.passphrase;
@@ -760,15 +761,15 @@ vorpal
   });
 
 vorpal
-  .command("spBPLaaaaa!")
+  .command("TryBPL!")
   .hidden()
   .action(function(args, callback) {
     var time = 0;
     var self=this;
     shbplspinner && shbplspinner.stop();
-    ["tux","meow","bunny","cower","dragon-and-cow"].forEach(function(spbpl){
+    ["beavis.zen","meow","bunny","turkey","dragon-and-cow","bong","cheese"].forEach(function(spbpl){
       setTimeout(function(){
-        self.log(cowsay.say({text:"SPAAAABPLLLLLL!", f:spbpl}));
+        self.log(cowsay.say({text:"BPL Rocks !", f:spbpl}));
       }, time++*1000);
     });
 
